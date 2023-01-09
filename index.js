@@ -102,10 +102,25 @@ class SinglyLinkedList {
     }
 
     // At the beginning, we redefine the tail to be the head node
-    // This reversing algorithm is designed so that the 'first & 'second' nodes keep 
+    // This reversing algorithm is designed so that the 'first & 'second' looping nodes keep 
     //moving along the list until every node is pointing to the previous node not the next
     //Once no more second node exists, that means the 'first' node has become the last node element
     // At this moment, the head node is assigned the 'first' node (which is the last after the iteration)
+    
+    // [x1,x2,x3,x4,x5]
+    // [| , |] -> x2 to point to x1
+
+    // [x1,x2,x3,x4,x5]
+    //    [| , |] -> x3 to point to x2
+
+    // [x1,x2,x3,x4,x5]
+    //       [| , |] -> x4 to point to x3
+
+    // [x1,x2,x3,x4,x5]
+    //          [| , |] -> x5 to point to x4
+
+    // [x1,x2,x3,x4,x5]
+    //              [| , |] -> this.head to become x5
     
     let first = this.head;
     this.tail = this.head;
