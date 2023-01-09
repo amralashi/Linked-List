@@ -95,6 +95,33 @@ class SinglyLinkedList {
     this.length--;
   }
 
+  reverse(){
+
+    if(!this.head.next){
+      return this.head;
+    }
+
+    // At the beginning, we redefine the tail to be the head node
+    // This reversing algorithm is designed so that the 'first & 'second' nodes keep 
+    //moving along the list until every node is pointing to the previous node not the next
+    //Once no more second node exists, that means the 'first' node has become the last node element
+    // At this moment, the head node is assigned the 'first' node (which is the last after the iteration)
+    
+    let first = this.head;
+    this.tail = this.head;
+    
+    let second = first.next;
+    while(second){
+      const temp = second.next;
+      second.next = first;
+      
+      first = second;
+      second = temp;
+    }
+    this.tail.next = null;
+    this.head = first;
+
+  }
   printList(){
     const array = [];
     let currNode = this.head;
@@ -218,17 +245,17 @@ class DoublyLinkedList {
 
 // Calling code starts from here...
 
-let myLinkedList = new DoublyLinkedList(1);
+let myLinkedList = new SinglyLinkedList(1);
 myLinkedList.append(2);
 myLinkedList.append(3);
 myLinkedList.append(4);
 myLinkedList.append(5);
-myLinkedList.append(4);
-myLinkedList.prepend(50);
+myLinkedList.append(6);
+myLinkedList.append(7);
+myLinkedList.append(8);
+myLinkedList.append(9);
 
-myLinkedList.insert(10, 99);
-myLinkedList.remove(3);
+myLinkedList.reverse();
 
-console.log(myLinkedList);
 console.log(myLinkedList.printList());
 
